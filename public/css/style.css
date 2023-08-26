@@ -1,0 +1,238 @@
+.search-input {
+    padding: 8px;
+    width: 300px;
+    border-radius: 4px 0 0 4px;
+}
+
+.search-btn {
+    padding: 8px;
+    border-radius: 0 4px 4px 0;
+}
+
+#tables {
+    font-family: "Roboto", sans-serif !important;
+    font-size: 1em !important;
+}
+td {
+    font-family: "Roboto", sans-serif !important;
+    font-size: 1em !important;
+    font-weight: bold !important;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+    /* Warna latar belakang saat dihover */
+}
+
+.dtr-control {
+    /* background: #fff !important; */
+    box-shadow: none !important;
+}
+
+/* Warna latar belakang tabel */
+/* Ubah #ffffff menjadi kode warna latar belakang putih yang Anda inginkan */
+table {
+    background-color: #ffffff;
+}
+
+thead {
+    background-color: rgba(14, 97, 199, 0.7) !important;
+    color: #fff !important;
+}
+
+thead > tr:hover {
+    background-color: rgba(14, 97, 199, 0.4) !important;
+    color: #fff !important;
+}
+
+tfoot {
+    background-color: rgba(14, 97, 199, 0.7) !important;
+    color: #fff !important;
+}
+
+tfoot > tr:hover {
+    background-color: rgba(14, 97, 199, 0.4) !important;
+    color: #fff !important;
+}
+
+.jumbotrons {
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    background: rgb(29 48 69);
+}
+/* Flex Container */
+.flex {
+    display: flex;
+}
+
+/* Flex Direction */
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-row-reverse {
+    flex-direction: row-reverse;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-col-reverse {
+    flex-direction: column-reverse;
+}
+
+/* Flex Wrap */
+.flex-no-wrap {
+    flex-wrap: nowrap;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+}
+
+/* Flex Justify Content */
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+.justify-evenly {
+    justify-content: space-evenly;
+}
+
+/* Flex Align Items */
+.items-start {
+    align-items: flex-start;
+}
+
+.items-end {
+    align-items: flex-end;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.items-baseline {
+    align-items: baseline;
+}
+
+.items-stretch {
+    align-items: stretch;
+}
+
+/* Flex Align Content */
+.content-start {
+    align-content: flex-start;
+}
+
+.content-end {
+    align-content: flex-end;
+}
+
+.content-center {
+    align-content: center;
+}
+
+.content-between {
+    align-content: space-between;
+}
+
+.content-around {
+    align-content: space-around;
+}
+
+.content-stretch {
+    align-content: stretch;
+}
+
+/* Flex Align Self */
+.self-auto {
+    align-self: auto;
+}
+
+.self-start {
+    align-self: flex-start;
+}
+
+.self-end {
+    align-self: flex-end;
+}
+
+.self-center {
+    align-self: center;
+}
+
+.self-stretch {
+    align-self: stretch;
+}
+
+/* Flex Order */
+.order-first {
+    order: -1;
+}
+
+.order-last {
+    order: 9999;
+}
+
+/* Flex Grow */
+.flex-grow {
+    flex-grow: 1;
+}
+
+/* Flex Shrink */
+.flex-shrink {
+    flex-shrink: 1;
+}
+
+/* Flex Basis */
+.flex-basis-auto {
+    flex-basis: auto;
+}
+
+/* Flex Justify Self */
+.justify-self-auto {
+    justify-self: auto;
+}
+
+.justify-self-start {
+    justify-self: flex-start;
+}
+
+.justify-self-end {
+    justify-self: flex-end;
+}
+
+.justify-self-center {
+    justify-self: center;
+}
+
+.justify-self-stretch {
+    justify-self: stretch;
+}
+.form-control {
+    background-color: #e0e0e0 !important;
+    padding-left: 5px !important;
+}
