@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('penyakit', function (Blueprint $table) {
+        Schema::create('diagnosa', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_penyakit');
-            $table->string('nama_penyakit');
-            $table->string('deskripsi')->nullable();
+            $table->string("kode_diagnosa");
+            $table->string("kode_penyakit");
+            $table->string("kode_gejala");
+            $table->string("number_poin");
+            $table->string("persentase");
+            $table->string("status")->default("inPredik");
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penyakit');
+        Schema::dropIfExists('diagnosa');
     }
 };

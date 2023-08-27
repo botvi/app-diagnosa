@@ -14,11 +14,6 @@ class penyakit extends Model
         'kode_penyakit',
         'nama_penyakit',
         'deskripsi',
-       
-    ];
-    public function roles()
-    {
 
-        return $this->belongsTo(roles::class);
-    }
+    ];
 }

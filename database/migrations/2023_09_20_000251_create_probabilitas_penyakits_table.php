@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('probabilitas_penyakit', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_roles', 20);
             $table->string('kode_penyakit');
             $table->string('kode_gejala');
+            $table->string('jumlah_seluruh_penyakit');
+            $table->string('jumlah_kemunculan');
+            $table->string('probability');
+            $table->string('keterangan');
             $table->timestamps();
-
-            $table->foreign('kode_penyakit')->references('id')->on('penyakit');
-            $table->foreign('kode_gejala')->references('id')->on('gejala');
         });
     }
 
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('probabilitas_penyakit');
     }
 };
