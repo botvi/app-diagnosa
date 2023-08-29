@@ -30,7 +30,14 @@
                     <a class="nav-link " href="/roles">
                         <span class="pcoded-micon">
                             <i class="feather icon-home"></i>
-                        </span><span class="pcoded-mtext">Roles</span>
+                        </span><span class="pcoded-mtext">Role</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/diagnosa">
+                        <span class="pcoded-micon">
+                            <i class="feather icon-home"></i>
+                        </span><span class="pcoded-mtext">Diagnosa</span>
                     </a>
                 </li>
                 <li class="nav-item">

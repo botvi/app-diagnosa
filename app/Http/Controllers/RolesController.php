@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\penyakit;
 use App\Models\gejala;
-use App\Models\roles;
+use App\Models\Aturan;
 use App\Service\DataTableFormat;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -27,7 +27,7 @@ class RolesController extends Controller
     {
 
         return DataTableFormat::Call()->query(function () {
-            return roles::query();
+            return Aturan::query();
         })
             ->formatRecords(function ($result, $start) {
                 return $result->map(function ($item, $index) use ($start) {
@@ -45,7 +45,6 @@ class RolesController extends Controller
     {
          {
             $validator = Validator::make($request->all(), [
-                'kode_roles' => 'required|string',
                 'kode_penyakit' => 'required|string|max:100',
                 'kode_gejala' => 'required|string',
             ]);
@@ -62,9 +61,9 @@ class RolesController extends Controller
             \DB::transaction(function () use ($request, $validator) {
               
 
-                $rolesData = $request->except(['kode_roles', 'kode_penyakit', 'kode_gejala','created_at','updated_at']);
+                $rolesData = $request->except([ 'kode_penyakit', 'kode_gejala','created_at','updated_at']);
                 $rolesData += $validator->validated();
-                $roles = roles::create($rolesData);
+                $roles = Aturan::create($rolesData);
                 if (!$roles) {
                     Alert::error('Validation Error', 'gagal menyimpan data');
                     return redirect()->back();
@@ -78,9 +77,8 @@ class RolesController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $hafalan = roles::find($id);
+            $hafalan = Aturan::find($id);
             $data = [
-                'kode_roles' => $request->kode_roles,
                 'kode_penyakit' => $request->kode_penyakit,
                 'kode_gejala' => $request->kode_gejala,
                
@@ -97,7 +95,7 @@ class RolesController extends Controller
     public function destroy($id)
     {
         try {
-            $op = roles::find($id);
+            $op = Aturan::find($id);
             $op->delete();
             Alert::success('Success', 'Data berhasil dihapus');
             return redirect()->back();
