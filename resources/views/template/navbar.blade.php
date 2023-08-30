@@ -9,25 +9,31 @@
                     <a class="nav-link " href="/home">
                         <span class="pcoded-micon">
                             <i class="feather icon-home"></i>
-                        </span><span class="pcoded-mtext">Dashboard</span>
+                            <span class="pcoded-mtext">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/penyakit">
-                        <span class="pcoded-micon">
-                        </span><span class="pcoded-mtext">Penyakit</span>
+                        <i class="fa fa-folder"></i>
+                        <span class="pcoded-mtext">Penyakit</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/gejala">
-                        <span class="pcoded-micon">
-                        </span><span class="pcoded-mtext">Gejala</span>
+                        <i class="fa fa-folder"></i>
+                        <span class="pcoded-mtext">Gejala</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/roles">
-                        <span class="pcoded-micon">
-                        </span><span class="pcoded-mtext">Role</span>
+                        <i class="fa fa-folder"></i>
+                        <span class="pcoded-mtext">Role</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="/diagnosa">
+                        <i class="fa fa-folder"></i>
+                        <span class="pcoded-mtext">Diagnosa</span>
                     </a>
                 </li>
                 <li class="nav-item">

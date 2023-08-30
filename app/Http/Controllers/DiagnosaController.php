@@ -5,24 +5,49 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Aturan;
 use App\Models\Diagnosa as ModelsDiagnosa;
+use App\Models\gejala;
 use App\Models\penyakit;
 use App\Models\ProbabilitasGejalaPenyakit;
 use App\Models\ProbabilitasPenyakit;
+use Database\Seeders\Diagnosa;
 
 class DiagnosaController extends Controller
 {
 
     public function show()
     {
-        return view("Page.Diagnosa.show");
+        $data["use_gejala"] = gejala::all();
+        return view("Page.Diagnosa.show", $data);
     }
-    public function algoritm_native_bayes(Request $request)
+    public function diagnosa(Request $request)
+    {
+        $algoritm = $this->algoritm_native_bayes($request->gejala);
+        return redirect("/diagnosa/prediksi/" . $algoritm->kode_diagnosa);
+    }
+    public function prediksi($kode_diagnosa)
+    {
+        $diagnosa = ModelsDiagnosa::where("kode_diagnosa", $kode_diagnosa)
+            ->get();
+
+        $use_gejala = explode(",", $diagnosa[0]->kode_gejala);
+        $data = [
+            "gejala" => gejala::whereIn("kode_gejala", $use_gejala)->get(),
+            "penyakit" => penyakit::whereIn("kode_penyakit", $diagnosa->pluck('kode_penyakit')->toArray())->get(),
+            "diagnosa" => $diagnosa
+        ];
+        return view("Page.Diagnosa.prediksi", $data);
+    }
+    public function algoritm_native_bayes($G)
     {
 
+
+
         $kode_diagnosa = \Str::random(5);
-        $gejala = ["G004", "G006", "G008", "G020", "G021"]; //uji metode
+        // $gejala = ["G004", "G006", "G008", "G020", "G021"]; //uji metode
+        $gejala = $G; //uji metode
         $penyakit = penyakit::all();
         $aturan = Aturan::whereIn("kode_gejala", $gejala)->get()->groupBy("kode_penyakit");
+
         $P_probabiliy = [];
         ProbabilitasPenyakit::truncate();
         foreach ($aturan as $ky => $val) {
@@ -47,6 +72,7 @@ class DiagnosaController extends Controller
             );
         }
         $predic = ProbabilitasPenyakit::all();
+
         $total_probabilitas = count($predic);
         ProbabilitasGejalaPenyakit::truncate();
         foreach ($predic as $prediksi) {
@@ -60,7 +86,7 @@ class DiagnosaController extends Controller
                         $eex = true;
                         ProbabilitasGejalaPenyakit::create(
                             [
-                                "kode_Penyakit" => $prediksi->kode_penyakit,
+                                "kode_penyakit" => $prediksi->kode_penyakit,
                                 "kode_gejala" => $gej,
                                 "kemunculan" => $total_probabilitas,
                                 "jumlah_gangguan" => 1,
@@ -73,7 +99,7 @@ class DiagnosaController extends Controller
                 if (!$eex) {
                     ProbabilitasGejalaPenyakit::create(
                         [
-                            "kode_Penyakit" => $prediksi->kode_penyakit,
+                            "kode_penyakit" => $prediksi->kode_penyakit,
                             "kode_gejala" => $gej,
                             "kemunculan" => $total_probabilitas,
                             "jumlah_gangguan" => 0,
@@ -147,9 +173,8 @@ class DiagnosaController extends Controller
             $items["hasil_kalkulasi"] = $presentase;
             return $items;
         });
-        $getDiagnosa = ModelsDiagnosa::where("kode_diagnosa", $kode_diagnosa)->get();
-        $Collect = collect($getDiagnosa)->max();
-        $upM = ModelsDiagnosa::find($Collect->id);
+        $getDiagnosa = ModelsDiagnosa::where("kode_diagnosa", $kode_diagnosa)->orderBy("persentase", "DESC")->first();
+        $upM = ModelsDiagnosa::find($getDiagnosa->id);
         $upM->status = "predik";
         $upM->save();
         return  $upM;

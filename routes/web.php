@@ -9,7 +9,6 @@ use App\Http\Controllers\{
     GejalaController,
     RolesController,
     DiagnosaController
-    
 };
 
 
@@ -42,9 +41,6 @@ Route::group([
     Route::post('/', [PenyakitController::class, 'store']);
     Route::post('/update/{id}', [PenyakitController::class, 'update']);
     Route::get('/destroy/{id}', [PenyakitController::class, 'destroy']);
-
-
-
 });
 Route::group([
     'middleware' =>  ["web"],
@@ -55,9 +51,6 @@ Route::group([
     Route::post('/', [GejalaController::class, 'store']);
     Route::post('/update/{id}', [GejalaController::class, 'update']);
     Route::get('/destroy/{id}', [GejalaController::class, 'destroy']);
-
-
-
 });
 Route::group([
     'middleware' =>  ["web"],
@@ -68,13 +61,12 @@ Route::group([
     Route::post('/', [RolesController::class, 'store']);
     Route::post('/update/{id}', [RolesController::class, 'update']);
     Route::get('/destroy/{id}', [RolesController::class, 'destroy']);
-
-
-
 });
 Route::group([
     'middleware' =>  ["web"],
     'prefix' => "diagnosa"
 ], function ($router) {
     Route::get('/', [DiagnosaController::class, 'show']);
+    Route::post('/', [DiagnosaController::class, 'diagnosa']);
+    Route::get('/prediksi/{id}', [DiagnosaController::class, 'prediksi']);
 });
