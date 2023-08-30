@@ -15,22 +15,19 @@
                 <li class="nav-item">
                     <a class="nav-link " href="/penyakit">
                         <span class="pcoded-micon">
-                            <i class="feather icon-home"></i>
                         </span><span class="pcoded-mtext">Penyakit</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/gejala">
                         <span class="pcoded-micon">
-                            <i class="feather icon-home"></i>
                         </span><span class="pcoded-mtext">Gejala</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="/roles">
                         <span class="pcoded-micon">
-                            <i class="feather icon-home"></i>
-                        </span><span class="pcoded-mtext">Roles</span>
+                        </span><span class="pcoded-mtext">Role</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -40,7 +37,7 @@
                         </span><span class="pcoded-mtext">Logout</span>
                     </a>
                 </li>
-               
+
             </ul>
         </div>
     </div>
