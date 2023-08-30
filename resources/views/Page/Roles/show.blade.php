@@ -24,19 +24,17 @@
                             <thead class="bg-gray-100 text-gray-500 shadow-md">
                                 <tr>
                                     <th class="w-[25px]">No</th>
-                                    <th>Kode</th>
-                                    <th>Nama Penyakit</th>
-                                    <th>Nama Roles</th>   
+                                    <th>Penyakit</th>
+                                    <th>Gejala</th>   
                                     <th>#</th>
                                 </tr>
                             </thead>
-            
+        
                             <tfoot class="bg-gray-100 text-gray-500 shadow-md">
                                 <tr>
                                     <th class="w-[25px]">No</th>
-                                    <th>Kode</th>
-                                    <th>Nama Penyakit</th>
-                                    <th>Nama Roles</th>   
+                                    <th>Penyakit</th>
+                                    <th>Gejala</th>   
                                     <th>#</th>
                                 </tr>
                             </tfoot>
@@ -66,8 +64,13 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="kode_roles">Kode roles:</label>
-                                    <input class="form-control" id="kode_roles" name="kode_roles" type="text">
+                                    <label for="gejala">Gejala:</label>
+                                    <select class="form-control w-full" id="kode_gejala" name="kode_gejala">
+                                        <option value="">-- Pilih Gejala --</option>
+                                        @foreach ($gejala as $gejala)
+                                            <option value="{{ $gejala->kode_gejala }}">{{ $gejala->nama_gejala }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -82,24 +85,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="gejala">Gejala:</label>
-                                    <select class="form-control w-full" id="kode_gejala" name="kode_gejala">
-                                        <option value="">-- Pilih Gejala --</option>
-                                        @foreach ($gejala as $gejala)
-                                            <option value="{{ $gejala->kode_gejala }}">{{ $gejala->nama_gejala }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                           
-                        </div>
-                        
 
                         <div class="flex justify-end" style="width: 100%">
-                            <button class="btn btn-primary bg-blue-500 w-[200px]" type="submit">Submit</button>
+                            <button class="btn btn-primary bg-green-500 w-[200px]" type="submit">Submit</button>
                         </div>
 
                     </form>
@@ -159,15 +147,12 @@
             stripeClasses: [],
             columns: [{
                     data: 'no'
-                }, {
-                    data: "kode_roles",
-                    className: 'editable'
                 },
                 {
-                    data: "nama_penyakit"
+                    data: "kode_penyakit"
                 },
                 {
-                    data: "nama_gejala"
+                    data: "kode_gejala"
                 },
                
                 {
@@ -192,7 +177,6 @@
                     const selectedData = parsedObject.find(item => item.id === id);
 
                     if (selectedData) {
-                        $('#kode_roles').val(selectedData.kode_roles);
                         $('#kode_penyakit').val(selectedData.kode_penyakit);
                         $('#kode_gejala').val(selectedData.kode_gejala);
                       

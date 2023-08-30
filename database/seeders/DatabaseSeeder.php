@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             ExGejala::class,
             ExPenyakit::class,
             ExAturan::class,
-            Diagnosa::class
+            Diagnosa::class,
+            UsersSeeder::class
         ]);
     }
 }

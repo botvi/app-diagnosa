@@ -11,6 +11,11 @@ use App\Models\ProbabilitasPenyakit;
 
 class DiagnosaController extends Controller
 {
+
+    public function show()
+    {
+        return view("Page.Diagnosa.show");
+    }
     public function algoritm_native_bayes(Request $request)
     {
 

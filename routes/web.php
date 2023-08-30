@@ -8,6 +8,7 @@ use App\Http\Controllers\{
     PenyakitController,
     GejalaController,
     RolesController,
+    DiagnosaController
     
 };
 
@@ -70,4 +71,10 @@ Route::group([
 
 
 
+});
+Route::group([
+    'middleware' =>  ["web"],
+    'prefix' => "diagnosa"
+], function ($router) {
+    Route::get('/', [DiagnosaController::class, 'show']);
 });

@@ -77,7 +77,7 @@
                         
 
                         <div class="flex justify-end" style="width: 100%">
-                            <button class="btn btn-primary bg-blue-500 w-[200px]" type="submit">Submit</button>
+                            <button class="btn btn-primary bg-green-500 w-[200px]" type="submit">Submit</button>
                         </div>
 
                     </form>

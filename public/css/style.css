@@ -36,22 +36,22 @@ table {
 }
 
 thead {
-    background-color: rgba(14, 97, 199, 0.7) !important;
+    background-color: #81d6ab !important;
     color: #fff !important;
 }
 
 thead > tr:hover {
-    background-color: rgba(14, 97, 199, 0.4) !important;
+    background-color: #81d6ab !important;
     color: #fff !important;
 }
 
 tfoot {
-    background-color: rgba(14, 97, 199, 0.7) !important;
+    background-color: #81d6ab !important;
     color: #fff !important;
 }
 
 tfoot > tr:hover {
-    background-color: rgba(14, 97, 199, 0.4) !important;
+    background-color: #81d6ab !important;
     color: #fff !important;
 }
 
