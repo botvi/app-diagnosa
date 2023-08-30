@@ -174,6 +174,7 @@ class DiagnosaController extends Controller
             return $items;
         });
         $getDiagnosa = ModelsDiagnosa::where("kode_diagnosa", $kode_diagnosa)->orderBy("persentase", "DESC")->first();
+
         $upM = ModelsDiagnosa::find($getDiagnosa->id);
         $upM->status = "predik";
         $upM->save();
