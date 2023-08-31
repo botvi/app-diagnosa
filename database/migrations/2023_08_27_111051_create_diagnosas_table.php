@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('diagnosa', function (Blueprint $table) {
             $table->id();
+            $table->string("pasien_id");
             $table->string("kode_diagnosa");
             $table->string("kode_penyakit");
             $table->string("kode_gejala");

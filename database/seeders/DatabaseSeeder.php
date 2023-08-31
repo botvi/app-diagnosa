@@ -15,12 +15,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            ExGejala::class,
-            ExPenyakit::class,
-            ExAturan::class,
-            Diagnosa::class,
+            GejalaSeeder::class,
+            PenyakitSeeder::class,
+            // ExGejala::class,
+            // ExPenyakit::class,
+            // ExAturan::class,
+            // Diagnosa::class,
             UsersSeeder::class,
-            ExPasien::class
+            // ExPasien::class,
         ]);
     }
 }

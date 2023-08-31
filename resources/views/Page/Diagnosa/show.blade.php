@@ -25,8 +25,9 @@
                                 <tr>
                                     <th class="w-[25px]">No</th>
                                     <th>Kode Diagnosa</th>
+                                    <th>Nama Pasien</th>
                                     <th>Kode Penyakit</th>
-                                    <th>Kode Gejala</th>
+                                    <th>Nama Penykit</th>
                                     <th>Number Poin</th>
                                     <th>Persentase</th>
                                     <th>Status</th>
@@ -41,27 +42,27 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $item->kode_diagnosa }}</td>
+                                        <td>{{ $item->pasien->nama_pasien }}</td>
                                         <td>{{ $item->kode_penyakit }}</td>
-                                        <td>{{ $item->kode_penyakit }}</td>
+                                        <td>{{ \App\Models\penyakit::where('kode_penyakit', $item->kode_penyakit)->first()->nama_penyakit }}
+                                        </td>
                                         <td>{{ $item->number_poin }}</td>
                                         <td>{{ $item->persentase }}</td>
                                         <td>{{ $item->status }}</td>
                                         <td>
-                                            @foreach ($diagnosa as $item)
-                                                @php
-                                                    $baseURL = '/diagnosa/prediksi';
-                                                    $id = $item->kode_diagnosa;
-                                                @endphp
-                                            @endforeach
+
                                             <a class="btn btn-outline-primary p-2"
-                                                href="{{ $baseURL }}/{{ $id }}" type="button">
+                                                href="{{ url('/diagnosa/prediksi/' . $item->kode_diagnosa) }}"
+                                                type="button">
                                                 <i class="fa fa-eye"></i> DETAIL</a>
+
                                         </td>
                                 @endforeach
                             <tfoot class="bg-gray-100 text-gray-500 shadow-md">
                                 <tr>
                                     <th class="w-[25px]">No</th>
                                     <th>Kode Diagnosa</th>
+                                    <th>Nama Pasien</th>
                                     <th>Kode Penyakit</th>
                                     <th>Kode Gejala</th>
                                     <th>Number Poin</th>
@@ -70,6 +71,7 @@
                                     <th>#</th>
                                 </tr>
                             </tfoot>
+
                         </table>
                     </div>
                 </div>
@@ -107,6 +109,7 @@
                                 <hr>
                                 <h5><strong>Gejala Yang Dialamai</strong></h5>
                             </div>
+
                             @foreach ($use_gejala as $item)
                                 <div class="col-sm-6 mb-2">
                                     <div class="form-check">

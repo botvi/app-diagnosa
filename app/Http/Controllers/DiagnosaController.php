@@ -14,7 +14,7 @@ use Database\Seeders\Diagnosa;
 class DiagnosaController extends Controller
 {
 
-// LAPORANNNN
+    // LAPORANNNN
     public function laporan($kode_diagnosa)
     {
         $diagnosa = ModelsDiagnosa::where("kode_diagnosa", $kode_diagnosa)
@@ -28,17 +28,16 @@ class DiagnosaController extends Controller
         ];
         return view("Page.Diagnosa.report", $data);
     }
-// LAPORANNNN
+    // LAPORANNNN
 
 
     public function show()
     {
         $data["use_gejala"] = gejala::all();
-// MENAMPILKAN TABEL DIAGNOSA
-        $data["diagnosa"] = ModelsDiagnosa::all();
-// MENAMPILKAN TABEL DIAGNOSA
+        $data["diagnosa"] = ModelsDiagnosa::whereStatus("predik")
+            ->with("pasien")
+            ->get();
 
-       
         return view("Page.Diagnosa.show", $data);
     }
     public function diagnosa(Request $request)
@@ -49,17 +48,20 @@ class DiagnosaController extends Controller
     public function prediksi($kode_diagnosa)
     {
         $diagnosa = ModelsDiagnosa::where("kode_diagnosa", $kode_diagnosa)
+            ->with("pasien")
             ->get();
 
         $use_gejala = explode(",", $diagnosa[0]->kode_gejala);
+
         $data = [
             "gejala" => gejala::whereIn("kode_gejala", $use_gejala)->get(),
             "penyakit" => penyakit::whereIn("kode_penyakit", $diagnosa->pluck('kode_penyakit')->toArray())->get(),
             "diagnosa" => $diagnosa
         ];
+
         return view("Page.Diagnosa.prediksi", $data);
     }
-   
+
     public function algoritm_native_bayes($G)
     {
 

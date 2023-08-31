@@ -5,8 +5,8 @@
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <div class="flex justify-between">
-                        <h1 class="text-white text-bold" style="font-size: 1.5em">Dashboard</h1>
-                    
+                        {{-- <h1 class="text-white text-bold" style="font-size: 1.5em">Dashboard</h1> --}}
+
                     </div>
                 </div>
             </div>
@@ -20,11 +20,11 @@
                 <div class="card-body">
                     <div class="w-full pb-10 pt-2">
                         <div class="row mb-4">
-                            <div class="col-md-6 p-2">
-                                <h1>TEST</h1>
+                            <div class="col-md-12 p-2">
+                                <img alt="" src="{{ asset('bg.jpg') }}" style="width: 100%;height: 400px">
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

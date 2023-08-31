@@ -6,10 +6,9 @@
                     <label>Navigation</label>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="/home">
-                        <span class="pcoded-micon">
-                            <i class="feather icon-home"></i>
-                            <span class="pcoded-mtext">Dashboard</span>
+                    <a class="nav-link " href="/pasien">
+                        <i class="fa fa-dashboard"></i>
+                        <span class="pcoded-mtext">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">

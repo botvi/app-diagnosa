@@ -11,6 +11,7 @@ class Diagnosa extends Model
     protected $table = 'diagnosa';
 
     protected $fillable = [
+        "pasien_id",
         "kode_diagnosa",
         "kode_penyakit",
         "kode_gejala",
@@ -18,4 +19,9 @@ class Diagnosa extends Model
         "persentase",
         "status"
     ];
+
+    public function pasien()
+    {
+        return $this->belongsTo(Pasien::class, 'pasien_id'); // Omit the second parameter if you're following convention
+    }
 }

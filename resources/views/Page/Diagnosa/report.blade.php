@@ -52,7 +52,7 @@
         #table td {
             text-align: left;
         }
-        
+
         .bg-orange-200 {
             background-color: #ffd7a3;
         }
@@ -105,35 +105,144 @@
 
     <div style="background:#000000; cursor:text; height:2px; margin-top:2px; width:100%">&nbsp;</div>
 
-    <table id="table">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Nama Penyakit</th>
-                <th>Presentase Prediksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @php
-                $no = 1;
-            @endphp
-            @foreach ($diagnosa as $item)
-                @php
-                    if ($item->status == 'predik') {
-                        $res = $item;
-                    }
-                @endphp
-                <tr class="{{ $item->status == 'predik' ? 'bg-orange-200' : '' }}">
-                    <td>{{ $no++ }}</td>
-                    <td>{{ \App\Models\penyakit::where('kode_penyakit', $item->kode_penyakit)->first()->nama_penyakit }}
-                    </td>
-                    <td>{{ number_format($item->persentase, 2, '.', '') }} %</td>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card mt-2" style="border-top: 3px solid green">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td class="p-3" style="width: 150px">Nama Pasien</td>
+                            <td class="w-1">:</td>
+                            <td>
+                                <?= $diagnosa[0]->pasien->nama_pasien ?? '' ?>
+                            </td>
 
+                        </tr>
 
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+                        <tr>
+                            <td class="p-3" style="width: 150px">Jenis Kelamin</td>
+                            <td class="w-1">:</td>
+                            <td>
+                                <?= $diagnosa[0]->pasien->jenis_kelamin ?? '' ?>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="p-3" style="width: 150px">Alamat</td>
+                            <td class="w-1">:</td>
+                            <td>
+                                <?= $diagnosa[0]->pasien->alamat ?? '' ?>
+                            </td>
+
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+            <div class="card mt-2" style="border-top: 3px solid green">
+
+                <div class="card-body">
+                    <div class="card-header">
+                        <h1 class="text-dark text-bold" style="font-size: 1.5em">Gejala</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mt-2">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Kode Gejala</th>
+                                            <th>Nama Gejala</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($gejala as $item)
+                                            <tr>
+                                                <td>
+                                                    {{ $item->kode_gejala }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->nama_gejala }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-2" style="border-top: 3px solid green">
+
+                <div class="card-body">
+                    <div class="card-header">
+                        <h1 class="text-dark text-bold" style="font-size: 1.5em">Penyakit Terdeteksi</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mt-2">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Kode Penyakit</th>
+                                            <th>Nama Penyakit</th>
+                                            <th>Probabilitas Total</th>
+                                            <th>Presentase Prediksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $res = [];
+                                        @endphp
+                                        @foreach ($diagnosa as $item)
+                                            @php
+                                                if ($item->status == 'predik') {
+                                                    $res = $item;
+                                                }
+                                            @endphp
+                                            <tr class="{{ $item->status == 'predik' ? 'bg-orange-200' : '' }}">
+                                                <td>{{ $item->kode_penyakit }}</td>
+                                                <td>{{ \App\Models\penyakit::where('kode_penyakit', $item->kode_penyakit)->first()->nama_penyakit }}
+                                                </td>
+                                                <td>{{ $item->number_poin }}</td>
+                                                <td>{{ number_format($item->persentase, 2, '.', '') }} %</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-2" style="border-top: 3px solid green">
+
+                <div class="card-body">
+                    <div class="card-header">
+                        <h1 class="text-dark text-bold" style="font-size: 1.5em">HASIL</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mt-2">
+
+                                <p>Dari hasil prediksi algoritma native bayes pada gejala diatas penyakit yang
+                                    diprediksi
+                                    adalah
+                                    <strong>
+                                        {{ \App\Models\penyakit::where('kode_penyakit', $res->kode_penyakit)->first()->nama_penyakit }}</strong>
+                                    dengan presentase prediksi {{ number_format($res->persentase, 2, '.', '') }} %
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         window.print();
     </script>

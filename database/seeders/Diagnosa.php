@@ -142,6 +142,7 @@ class Diagnosa extends Seeder
         $res = collect($result)->map(function ($items) use ($result_sum, $gejala, $kode_diagnosa) {
             $presentase = ($items["hasil"] / $result_sum) * 100;
             ModelsDiagnosa::create([
+                "pasien_id" => 1,
                 "kode_diagnosa" => $kode_diagnosa,
                 "kode_penyakit" => $items["kode_penyakit"],
                 "kode_gejala" => implode(",", $gejala),

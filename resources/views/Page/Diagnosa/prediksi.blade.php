@@ -6,6 +6,7 @@
                 <div class="col-md-12">
                     <div class="d-flex">
                         <h1 class="text-white text-bold mr-auto p-2" style="font-size: 1.5em">HASIL DIAGNOSA</h1>
+
                         @foreach ($diagnosa as $item)
                             @php
                                 $baseURL = '/diagnosa/laporan';
@@ -13,9 +14,9 @@
                             @endphp
                         @endforeach
 
-
                         <a class="btn btn-outline-light p-2" href="{{ $baseURL }}/{{ $id }}" type="button">
                             <i class="fa fa-print"></i> LAPORAN</a>
+
                     </div>
                 </div>
             </div>
@@ -25,18 +26,37 @@
     <!-- [ Main Content ] start -->
     <div class="row">
         <div class="col-sm-12">
-            <div class="card">
+            <div class="card mt-2" style="border-top: 3px solid green">
                 <div class="card-body">
-                    <div class="card">
-                        <table>
-                            <tr>
-                                <td class="w-20 p-3">Nama</td>
-                                <td class="w-1">:</td>
-                                <td>nama asal</td>
+                    <table>
+                        <tr>
+                            <td class="p-3" style="width: 150px">Nama Pasien</td>
+                            <td class="w-1">:</td>
+                            <td>
+                                <?= $diagnosa[0]->pasien->nama_pasien ?? '' ?>
+                            </td>
 
-                            </tr>
-                        </table>
-                    </div>
+                        </tr>
+
+                        <tr>
+                            <td class="p-3" style="width: 150px">Jenis Kelamin</td>
+                            <td class="w-1">:</td>
+                            <td>
+                                <?= $diagnosa[0]->pasien->jenis_kelamin ?? '' ?>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td class="p-3" style="width: 150px">Alamat</td>
+                            <td class="w-1">:</td>
+                            <td>
+                                <?= $diagnosa[0]->pasien->alamat ?? '' ?>
+                            </td>
+
+                        </tr>
+
+                    </table>
                 </div>
             </div>
             <div class="card mt-2" style="border-top: 3px solid green">
