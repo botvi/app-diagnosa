@@ -19,7 +19,59 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-body">
-                    <h1>konten</h1>
+                    <div class="w-full pb-10 pt-2">
+                        <table class="display responsive nowrap" id="tables" style="width:100%">
+                            <thead class="bg-gray-100 text-gray-500 shadow-md">
+                                <tr>
+                                    <th class="w-[25px]">No</th>
+                                    <th>Kode Diagnosa</th>
+                                    <th>Kode Penyakit</th>
+                                    <th>Kode Gejala</th>
+                                    <th>Number Poin</th>
+                                    <th>Persentase</th>
+                                    <th>Status</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $no = 1;
+                                @endphp
+                                @foreach ($diagnosa as $item)
+                                    <tr>
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $item->kode_diagnosa }}</td>
+                                        <td>{{ $item->kode_penyakit }}</td>
+                                        <td>{{ $item->kode_penyakit }}</td>
+                                        <td>{{ $item->number_poin }}</td>
+                                        <td>{{ $item->persentase }}</td>
+                                        <td>{{ $item->status }}</td>
+                                        <td>
+                                            @foreach ($diagnosa as $item)
+                                                @php
+                                                    $baseURL = '/diagnosa/prediksi';
+                                                    $id = $item->kode_diagnosa;
+                                                @endphp
+                                            @endforeach
+                                            <a class="btn btn-outline-primary p-2"
+                                                href="{{ $baseURL }}/{{ $id }}" type="button">
+                                                <i class="fa fa-eye"></i> DETAIL</a>
+                                        </td>
+                                @endforeach
+                            <tfoot class="bg-gray-100 text-gray-500 shadow-md">
+                                <tr>
+                                    <th class="w-[25px]">No</th>
+                                    <th>Kode Diagnosa</th>
+                                    <th>Kode Penyakit</th>
+                                    <th>Kode Gejala</th>
+                                    <th>Number Poin</th>
+                                    <th>Persentase</th>
+                                    <th>Status</th>
+                                    <th>#</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,4 +132,25 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('style')
+    <link href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+@endsection
+@section('script')
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        new DataTable('#tables');
+    </script>
 @endsection

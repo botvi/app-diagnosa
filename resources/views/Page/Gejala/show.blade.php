@@ -4,10 +4,17 @@
         <div class="page-block">
             <div class="row align-items-center">
                 <div class="col-md-12">
-                    <div class="flex justify-between">
-                        <h1 class="text-white text-bold" style="font-size: 1.5em">Data Gejala</h1>
-                        <button class="btn btn-outline-light" data-target=".modal-form" data-toggle="modal" type="button">
-                            <i class="fa fa-save"></i> Tambah Data</button>
+                    <div class="d-flex">
+                        <h1 class="text-white text-bold mr-auto p-2" style="font-size: 1.5em">Data Penyakit</h1>
+                        <button class="btn btn-outline-light align-right p-2" data-target=".modal-form" data-toggle="modal" type="button">
+                            <i class="fa fa-save"></i> TAMBAH DATA</button>&nbsp;
+                        @php
+                            $baseURL = '/gejala/laporan/';
+                            $queryParams = request()->query(); // Mengambil semua query parameter dari URL saat ini
+                            $queryString = http_build_query($queryParams); // Membuat string query parameter dari array
+                        @endphp
+                        <a class="btn btn-outline-light p-2" href="{{ $baseURL }}?{{ $queryString }}" type="button">
+                            <i class="fa fa-print"></i> LAPORAN</a>
                     </div>
                 </div>
             </div>

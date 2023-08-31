@@ -3,21 +3,21 @@
 namespace App\Http\Controllers;
 
 use Alert;
-use App\Models\penyakit;
+use App\Models\Pasien;
 use App\Service\DataTableFormat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class PenyakitController extends Controller
+class PasienController extends Controller
 {
     public function show()
     {
-        return view("Page.Penyakit.show");
+        return view("Page.Pasien.show");
     }
     public function show_data()
     {
         return DataTableFormat::Call()->query(function () {
-            return penyakit::query();
+            return Pasien::query();
         })
             ->formatRecords(function ($result, $start) {
                 return $result->map(function ($item, $index) use ($start) {
@@ -33,10 +33,10 @@ class PenyakitController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'kode_penyakit' => 'required|string|max:100',
-                'nama_penyakit' => 'required|string',
-                'pengobatan' => 'required|string',
-                'deskripsi' => 'required|string',
+                'nama_pasien' => 'required|string',
+                'jenis_kelamin' => 'required|string',
+                'alamat' => 'required|string',
+
             ]);
             if ($validator->fails()) {
                 $errorMessages = $validator->messages();
@@ -49,12 +49,12 @@ class PenyakitController extends Controller
             }
 
             \DB::transaction(function () use ($request, $validator) {
-              
 
-                $penyakitData = $request->except(['kode_penyakit', 'nama_penyakit', 'pengobatan', 'deskripsi']);
-                $penyakitData += $validator->validated();
-                $penyakit = penyakit::create($penyakitData);
-                if (!$penyakit) {
+
+                $pasienData = $request->except(['nama_pasien', 'jenis_kelamin', 'alamat']);
+                $pasienData += $validator->validated();
+                $pasien = Pasien::create($pasienData);
+                if (!$pasien) {
                     Alert::error('Validation Error', 'gagal menyimpan data');
                     return redirect()->back();
                 }
@@ -71,10 +71,9 @@ class PenyakitController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'kode_penyakit' => 'required|string|max:100',
-                'nama_penyakit' => 'required|string',
-                'pengobatan' => 'required|string',
-                'deskripsi' => 'required|string',
+                'nama_pasien' => 'required|string',
+                'jenis_kelamin' => 'required|string',
+                'alamat' => 'required|string',
             ]);
             if ($validator->fails()) {
                 $errorMessages = $validator->messages();
@@ -87,15 +86,13 @@ class PenyakitController extends Controller
             }
 
             // Cari operator berdasarkan operator_id
-            $penyakit = penyakit::findOrFail($id);
+            $pasien = Pasien::findOrFail($id);
 
             // Update data operator
-            $penyakit->update($request->only([
-                'kode_penyakit',
-                'nama_penyakit',
-                'pengobatan',
-                'deskripsi',
-             
+            $pasien->update($request->only([
+                'nama_pasien',
+                'jenis_kelamin',
+                'alamat',
             ]));
 
 
@@ -111,7 +108,7 @@ class PenyakitController extends Controller
     public function destroy($id)
     {
         try {
-            $op = penyakit::find($id);
+            $op = Pasien::find($id);
             $op->delete();
             Alert::success('Success', 'Data berhasil dihapus');
             return redirect()->back();
@@ -119,12 +116,6 @@ class PenyakitController extends Controller
             Alert::error('Validation Error', 'fatal error!');
             return redirect()->back();
         }
-    }
-
-    public function laporan()
-    {
-        $data["rep"] = penyakit::all();
-        return view("Page.Penyakit.report", $data);
     }
 
 

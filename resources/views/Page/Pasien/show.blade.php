@@ -4,17 +4,10 @@
         <div class="page-block">
             <div class="row align-items-center">
                 <div class="col-md-12">
-                    <div class="d-flex">
-                        <h1 class="text-white text-bold mr-auto p-2" style="font-size: 1.5em">Data Penyakit</h1>
-                        <button class="btn btn-outline-light align-right p-2" data-target=".modal-form" data-toggle="modal" type="button">
-                            <i class="fa fa-save"></i> TAMBAH DATA</button>&nbsp;
-                        @php
-                            $baseURL = '/penyakit/laporan/';
-                            $queryParams = request()->query(); // Mengambil semua query parameter dari URL saat ini
-                            $queryString = http_build_query($queryParams); // Membuat string query parameter dari array
-                        @endphp
-                        <a class="btn btn-outline-light p-2" href="{{ $baseURL }}?{{ $queryString }}" type="button">
-                            <i class="fa fa-print"></i> LAPORAN</a>
+                    <div class="flex justify-between">
+                        <h1 class="text-white text-bold" style="font-size: 1.5em">Data Pasien</h1>
+                        <button class="btn btn-outline-light" data-target=".modal-form" data-toggle="modal" type="button">
+                            <i class="fa fa-save"></i> Tambah Data</button>
                     </div>
                 </div>
             </div>
@@ -31,20 +24,18 @@
                             <thead class="bg-gray-100 text-gray-500 shadow-md">
                                 <tr>
                                     <th class="w-[25px]">No</th>
-                                    <th>Kode</th>
-                                    <th>Nama Penyakit</th>
-                                    <th>Pengobatan</th>
-                                    <th>Deskripsi</th>
+                                    <th>Nama pasien</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Alamat</th>
                                     <th>#</th>
                                 </tr>
                             </thead>
                             <tfoot class="bg-gray-100 text-gray-500 shadow-md">
                                 <tr>
                                     <th class="w-[25px]">No</th>
-                                    <th>Kode</th>
-                                    <th>Nama Penyakit</th>
-                                    <th>Pengobatan</th>
-                                    <th>Deskripsi</th>
+                                    <th>Nama pasien</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Alamat</th>
                                     <th>#</th>
                                 </tr>
                             </tfoot>
@@ -67,44 +58,39 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/penyakit" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" id="form-entry"
+                    <form action="/pasien" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" id="form-entry"
                         method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="kode_penyakit">Kode Penyakit:</label>
-                                    <input class="form-control" id="kode_penyakit" name="kode_penyakit" type="text">
+                                    <label for="nama_pasien">Nama pasien:</label>
+                                    <input class="form-control" id="nama_pasien" name="nama_pasien" type="text">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="nama_penyakit">Nama Penyakit:</label>
-                                    <input class="form-control" id="nama_penyakit" name="nama_penyakit" type="text">
+                                    <label for="jenis_kelamin">Jenis Kelamin:</label>
+                                    <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
+                                        <option value="Laki-Laki">Laki-laki</option>
+                                        <option value="Perempuan">Perempuan</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="pengobatan">Pengobatan:</label>
-                                    <textarea class="form-control" id="pengobatan" name="pengobatan" type="text"> </textarea>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="deskripsi">Deskripsi:</label>
-                                    <input class="form-control" id="deskripsi" name="deskripsi" type="text">
+                                    <label for="alamat">Alamat:</label>
+                                    <input class="form-control" id="alamat" name="alamat" type="text">
                                 </div>
                             </div>
 
-                        </div>
 
 
-                        <div class="flex justify-end" style="width: 100%">
-                            <button class="btn btn-primary bg-green-500 w-[200px]" type="submit">Submit</button>
-                        </div>
+                            <div class="flex justify-end" style="width: 100%">
+                                <button class="btn btn-primary bg-green-500 w-[200px]" type="submit">Submit</button>
+                            </div>
 
                     </form>
                 </div>
@@ -138,7 +124,7 @@
                 return '{}'; // Mengembalikan objek kosong jika parsing gagal
             }
         }
-        const URI = "/penyakit/show-data";
+        const URI = "/pasien/show-data";
         const tables = new DataTable("#tables", {
             processing: true,
             serverSide: true,
@@ -163,17 +149,15 @@
             columns: [{
                     data: 'no'
                 }, {
-                    data: "kode_penyakit",
+                    data: "nama_pasien",
                 },
                 {
-                    data: "nama_penyakit"
+                    data: "jenis_kelamin"
                 },
                 {
-                    data: "pengobatan"
+                    data: "alamat"
                 },
-                {
-                    data: "deskripsi"
-                },
+
 
                 {
                     data: null,
@@ -197,13 +181,12 @@
                     const selectedData = parsedObject.find(item => item.id === id);
 
                     if (selectedData) {
-                        $('#kode_penyakit').val(selectedData.kode_penyakit);
-                        $('#nama_penyakit').val(selectedData.nama_penyakit);
-                        $('#pengobatan').val(selectedData.pengobatan);
-                        $('#deskripsi').val(selectedData.deskripsi);
+                        $('#nama_pasien').val(selectedData.nama_pasien);
+                        $('#jenis_kelamin').val(selectedData.jenis_kelamin);
+                        $('#alamat').val(selectedData.alamat);
 
                         //untuk pasword tidak di edit disini
-                        $("#form-entry").attr("action", "/penyakit/update/" + id);
+                        $("#form-entry").attr("action", "/pasien/update/" + id);
                     } else {
                         toastr.info('Data dengan ID tersebut tidak ditemukan.');
                     }
@@ -216,7 +199,7 @@
         })
         $(document).on("click", ".data-destroy", function() {
             const id = $(this).data("id");
-            const url = "/penyakit/destroy/" + id;
+            const url = "/pasien/destroy/" + id;
             destory(url);
         });
     </script>

@@ -13,6 +13,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link " href="/pasien">
+                        <i class="fa fa-folder"></i>
+                        <span class="pcoded-mtext">Pasien</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link " href="/penyakit">
                         <i class="fa fa-folder"></i>
                         <span class="pcoded-mtext">Penyakit</span>

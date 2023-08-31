@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             ExPenyakit::class,
             ExAturan::class,
             Diagnosa::class,
-            UsersSeeder::class
+            UsersSeeder::class,
+            ExPasien::class
         ]);
     }
 }

@@ -8,7 +8,8 @@ use App\Http\Controllers\{
     PenyakitController,
     GejalaController,
     RolesController,
-    DiagnosaController
+    DiagnosaController,
+    PasienController,
 };
 
 
@@ -41,6 +42,8 @@ Route::group([
     Route::post('/', [PenyakitController::class, 'store']);
     Route::post('/update/{id}', [PenyakitController::class, 'update']);
     Route::get('/destroy/{id}', [PenyakitController::class, 'destroy']);
+    Route::get('/laporan', [PenyakitController::class, 'laporan']);
+
 });
 Route::group([
     'middleware' =>  ["web"],
@@ -51,6 +54,8 @@ Route::group([
     Route::post('/', [GejalaController::class, 'store']);
     Route::post('/update/{id}', [GejalaController::class, 'update']);
     Route::get('/destroy/{id}', [GejalaController::class, 'destroy']);
+    Route::get('/laporan', [GejalaController::class, 'laporan']);
+
 });
 Route::group([
     'middleware' =>  ["web"],
@@ -69,4 +74,16 @@ Route::group([
     Route::get('/', [DiagnosaController::class, 'show']);
     Route::post('/', [DiagnosaController::class, 'diagnosa']);
     Route::get('/prediksi/{id}', [DiagnosaController::class, 'prediksi']);
+    Route::get('/laporan/{id}', [DiagnosaController::class, 'laporan']);
+});
+
+Route::group([
+    'middleware' =>  ["web"],
+    'prefix' => "pasien"
+], function ($router) {
+    Route::get('/', [PasienController::class, 'show']);
+    Route::get('/show-data', [PasienController::class, 'show_data']);
+    Route::post('/', [PasienController::class, 'store']);
+    Route::post('/update/{id}', [PasienController::class, 'update']);
+    Route::get('/destroy/{id}', [PasienController::class, 'destroy']);
 });

@@ -25,16 +25,16 @@
                                 <tr>
                                     <th class="w-[25px]">No</th>
                                     <th>Penyakit</th>
-                                    <th>Gejala</th>   
+                                    <th>Gejala</th>
                                     <th>#</th>
                                 </tr>
                             </thead>
-        
+
                             <tfoot class="bg-gray-100 text-gray-500 shadow-md">
                                 <tr>
                                     <th class="w-[25px]">No</th>
                                     <th>Penyakit</th>
-                                    <th>Gejala</th>   
+                                    <th>Gejala</th>
                                     <th>#</th>
                                 </tr>
                             </tfoot>
@@ -79,8 +79,9 @@
                                     <select class="form-control w-full" id="kode_penyakit" name="kode_penyakit">
                                         <option value="">-- Pilih Penyakit --</option>
                                         @foreach ($penyakit as $penyakit)
-                                        <option value="{{ $penyakit->kode_penyakit }}">{{ $penyakit->nama_penyakit }}</option>
-                                    @endforeach
+                                            <option value="{{ $penyakit->kode_penyakit }}">{{ $penyakit->nama_penyakit }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -98,14 +99,14 @@
 @endsection
 
 @section('style')
-<link href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-<link href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 @endsection
 @section('script')
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
@@ -154,7 +155,7 @@
                 {
                     data: "kode_gejala"
                 },
-               
+
                 {
                     data: null,
                     render: function(data, type, row) {
@@ -179,7 +180,7 @@
                     if (selectedData) {
                         $('#kode_penyakit').val(selectedData.kode_penyakit);
                         $('#kode_gejala').val(selectedData.kode_gejala);
-                      
+
                         //untuk pasword tidak di edit disini
                         $("#form-entry").attr("action", "/roles/update/" + id);
                     } else {
@@ -198,4 +199,4 @@
             destory(url);
         });
     </script>
-    @endsection
+@endsection

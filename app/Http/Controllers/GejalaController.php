@@ -115,6 +115,12 @@ class GejalaController extends Controller
         }
     }
 
+    public function laporan()
+    {
+        $data["rep"] = gejala::all();
+        return view("Page.Gejala.report", $data);
+    }
+
 
 
 }

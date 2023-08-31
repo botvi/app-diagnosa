@@ -4,8 +4,18 @@
         <div class="page-block">
             <div class="row align-items-center">
                 <div class="col-md-12">
-                    <div class="flex justify-between">
-                        <h1 class="text-white text-bold" style="font-size: 1.5em">HASIL DIAGNOSA</h1>
+                    <div class="d-flex">
+                        <h1 class="text-white text-bold mr-auto p-2" style="font-size: 1.5em">HASIL DIAGNOSA</h1>
+                        @foreach ($diagnosa as $item)
+                            @php
+                                $baseURL = '/diagnosa/laporan';
+                                $id = $item->kode_diagnosa;
+                            @endphp
+                        @endforeach
+
+
+                        <a class="btn btn-outline-light p-2" href="{{ $baseURL }}/{{ $id }}" type="button">
+                            <i class="fa fa-print"></i> LAPORAN</a>
                     </div>
                 </div>
             </div>
@@ -23,6 +33,7 @@
                                 <td class="w-20 p-3">Nama</td>
                                 <td class="w-1">:</td>
                                 <td>nama asal</td>
+
                             </tr>
                         </table>
                     </div>
