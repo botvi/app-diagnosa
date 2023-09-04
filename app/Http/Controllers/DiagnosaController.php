@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Aturan;
 use App\Models\Diagnosa as ModelsDiagnosa;
 use App\Models\gejala;
+use App\Models\Pasien;
 use App\Models\penyakit;
 use App\Models\ProbabilitasGejalaPenyakit;
 use App\Models\ProbabilitasPenyakit;
@@ -24,6 +25,7 @@ class DiagnosaController extends Controller
         $data = [
             "gejala" => gejala::whereIn("kode_gejala", $use_gejala)->get(),
             "penyakit" => penyakit::whereIn("kode_penyakit", $diagnosa->pluck('kode_penyakit')->toArray())->get(),
+            "pasien" => Pasien::all(),
             "diagnosa" => $diagnosa
         ];
         return view("Page.Diagnosa.report", $data);
@@ -37,12 +39,14 @@ class DiagnosaController extends Controller
         $data["diagnosa"] = ModelsDiagnosa::whereStatus("predik")
             ->with("pasien")
             ->get();
+        $data["pasien"] = Pasien::all();
 
         return view("Page.Diagnosa.show", $data);
     }
     public function diagnosa(Request $request)
     {
-        $algoritm = $this->algoritm_native_bayes($request->gejala);
+
+        $algoritm = $this->algoritm_native_bayes($request->gejala, $request);
         return redirect("/diagnosa/prediksi/" . $algoritm->kode_diagnosa);
     }
     public function prediksi($kode_diagnosa)
@@ -62,11 +66,8 @@ class DiagnosaController extends Controller
         return view("Page.Diagnosa.prediksi", $data);
     }
 
-    public function algoritm_native_bayes($G)
+    public function algoritm_native_bayes($G, $request)
     {
-
-
-
         $kode_diagnosa = \Str::random(5);
         // $gejala = ["G004", "G006", "G008", "G020", "G021"]; //uji metode
         $gejala = $G; //uji metode
@@ -76,9 +77,10 @@ class DiagnosaController extends Controller
         $P_probabiliy = [];
         ProbabilitasPenyakit::truncate();
         foreach ($aturan as $ky => $val) {
+
             $P_probabiliy[] = [
                 "kode_penyakit" => $ky,
-                "probability" => number_format((1 / (count($penyakit))), 2, '.', ''),
+                "probability" => floor((1 / count($penyakit)) * 100) / 100,
                 "jumlah_penyakit" => $penyakit
             ];
             $gejal = [];
@@ -91,7 +93,7 @@ class DiagnosaController extends Controller
                     "kode_gejala" => implode(",", $gejal),
                     "jumlah_seluruh_penyakit" => count($penyakit),
                     "jumlah_kemunculan" =>  1,
-                    "probability" => number_format((1 / (count($penyakit))), 2, '.', ''),
+                    "probability" => floor((1 / count($penyakit)) * 100) / 100,
                     "keterangan" => "1/" . count($penyakit)
                 ]
             );
@@ -186,10 +188,11 @@ class DiagnosaController extends Controller
             ];
         }
         $result_sum = (float) number_format(round((float)collect($result)->sum("hasil"), 2), 2);
-        $res = collect($result)->map(function ($items) use ($result_sum, $gejala, $kode_diagnosa) {
+        $res = collect($result)->map(function ($items) use ($result_sum, $gejala, $kode_diagnosa, $request) {
             $presentase = ($items["hasil"] / $result_sum) * 100;
             ModelsDiagnosa::create([
                 "kode_diagnosa" => $kode_diagnosa,
+                "pasien_id" => $request->pasien_id,
                 "kode_penyakit" => $items["kode_penyakit"],
                 "kode_gejala" => implode(",", $gejala),
                 "number_poin" => $items["hasil"],

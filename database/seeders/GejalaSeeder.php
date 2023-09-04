@@ -18,7 +18,7 @@ class GejalaSeeder extends Seeder
         $data = [
             ["kode_gejala" => "G001", "nama_gejala" => "berat badan menyusut"],
             ["kode_gejala" => "G002", "nama_gejala" => "suhu tubuh tinggi"],
-            ["kode_gejala" => "G003", "nama_gejala" => "pembengkakkan limfatikuss nodus"],
+            ["kode_gejala" => "G003", "nama_gejala" => "pembengkakkan nodus limfatikuss"],
             ["kode_gejala" => "G004", "nama_gejala" => "anemia"],
             ["kode_gejala" => "G005", "nama_gejala" => "gelisah"],
             ["kode_gejala" => "G006", "nama_gejala" => "bagian perut kiri menggembung"],

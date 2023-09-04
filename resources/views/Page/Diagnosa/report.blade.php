@@ -111,7 +111,7 @@
                 <div class="card-body">
                     <table>
                         <tr>
-                            <td class="p-3" style="width: 150px">Nama Pasien</td>
+                            <td class="p-3" style="width: 150px">Nama Pemilik</td>
                             <td class="w-1">:</td>
                             <td>
                                 <?= $diagnosa[0]->pasien->nama_pasien ?? '' ?>
@@ -120,7 +120,7 @@
                         </tr>
 
                         <tr>
-                            <td class="p-3" style="width: 150px">Jenis Kelamin</td>
+                            <td class="p-3" style="width: 150px">Jenis Kelamin Sapi</td>
                             <td class="w-1">:</td>
                             <td>
                                 <?= $diagnosa[0]->pasien->jenis_kelamin ?? '' ?>
@@ -129,7 +129,7 @@
                         </tr>
 
                         <tr>
-                            <td class="p-3" style="width: 150px">Alamat</td>
+                            <td class="p-3" style="width: 150px">Alamat Pemilik</td>
                             <td class="w-1">:</td>
                             <td>
                                 <?= $diagnosa[0]->pasien->alamat ?? '' ?>

@@ -98,10 +98,10 @@
                             <div class="col-sm-12 mb-2">
                                 <div class="form-grop">
                                     <label for="">Nama Pasien</label>
-                                    <select class="form-control" name="">
-                                        <option value="">A</option>
-                                        <option value="">B</option>
-                                        <option value="">C</option>
+                                    <select class="form-control" name="pasien_id">
+                                        @foreach ($pasien as $item)
+                                            <option value="{{ $item->id }}">{{ $item->nama_pasien }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -116,7 +116,8 @@
                                         <input class="form-check-input" id="{{ $item->kode_gejala }}" name="gejala[]"
                                             type="checkbox" value="{{ $item->kode_gejala }}">
                                         <label class="form-check-label"
-                                            for="{{ $item->kode_gejala }}">{{ $item->nama_gejala }}</label>
+                                            for="{{ $item->kode_gejala }}">{{ $item->kode_gejala }}
+                                            {{ $item->nama_gejala }}</label>
                                     </div>
                                 </div>
                             @endforeach

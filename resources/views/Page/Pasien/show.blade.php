@@ -5,7 +5,7 @@
             <div class="row align-items-center">
                 <div class="col-md-12">
                     <div class="flex justify-between">
-                        <h1 class="text-white text-bold" style="font-size: 1.5em">Data Pasien</h1>
+                        <h1 class="text-white text-bold" style="font-size: 1.5em">Data Pasien Hewan</h1>
                         <button class="btn btn-outline-light" data-target=".modal-form" data-toggle="modal" type="button">
                             <i class="fa fa-save"></i> Tambah Data</button>
                     </div>
@@ -24,18 +24,18 @@
                             <thead class="bg-gray-100 text-gray-500 shadow-md">
                                 <tr>
                                     <th class="w-[25px]">No</th>
-                                    <th>Nama pasien</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Alamat</th>
+                                    <th>Nama Pemilik</th>
+                                    <th>Jenis Kelamin Sapi</th>
+                                    <th>Alamat Pemilik</th>
                                     <th>#</th>
                                 </tr>
                             </thead>
                             <tfoot class="bg-gray-100 text-gray-500 shadow-md">
                                 <tr>
                                     <th class="w-[25px]">No</th>
-                                    <th>Nama pasien</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Alamat</th>
+                                    <th>Nama Pemilik</th>
+                                    <th>Jenis Kelamin Sapi</th>
+                                    <th>Alamat Pemilik</th>
                                     <th>#</th>
                                 </tr>
                             </tfoot>
@@ -64,16 +64,16 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="nama_pasien">Nama pasien:</label>
+                                    <label for="nama_pasien">Nama Pemilik:</label>
                                     <input class="form-control" id="nama_pasien" name="nama_pasien" type="text">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="jenis_kelamin">Jenis Kelamin:</label>
+                                    <label for="jenis_kelamin">Jenis Kelamin Sapi:</label>
                                     <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
-                                        <option value="Laki-Laki">Laki-laki</option>
-                                        <option value="Perempuan">Perempuan</option>
+                                        <option value="Jantan">Jantan</option>
+                                        <option value="Betina">Betina</option>
                                     </select>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="alamat">Alamat:</label>
+                                    <label for="alamat">Alamat Pemilik:</label>
                                     <input class="form-control" id="alamat" name="alamat" type="text">
                                 </div>
                             </div>

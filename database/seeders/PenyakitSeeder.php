@@ -17,42 +17,43 @@ class PenyakitSeeder extends Seeder
     {
         $data = [
             [
-                "kode_penyakit" => "P01",
+                "kode_penyakit" => "P001",
                 "nama_penyakit" => "Parasit Darah",
                 "pengobatan" => "",
-                "definisi" => "Endoparasit yg hidup dalam peredarah darah induk semang yg dapat menular dari ternak sapi keternak lainnya melalui vektor penyakit seperti caplak dan lalat penghisap darah."
+                "definisi" => ""
             ],
             [
-                "kode_penyakit" => "P02",
+                "kode_penyakit" => "P002",
                 "nama_penyakit" => "Tympani",
                 "pengobatan" => "",
-                "definisi" => "Penumpukan gell yang berlebih pada perut bagian kiri, sehingga kelihatan lebih menonjol."
+                "definisi" => ""
             ],
             [
-                "kode_penyakit" => "P03",
+                "kode_penyakit" => "P003",
                 "nama_penyakit" => "Brucellosis",
                 "pengobatan" => "",
-                "definisi" => "Infeksi yang disebabkan oleh bakteri Brucella dan merupakan penyakit"
+                "definisi" => ""
             ],
             [
-                "kode_penyakit" => "P04",
+                "kode_penyakit" => "P004",
                 "nama_penyakit" => "Jumrana",
                 "pengobatan" => "",
-                "definisi" => "Penyakit menular yg hanya pada sapi bali (tidak menular pada jenis sapi lainnya yg disebabkan oleh virus)"
+                "definisi" => ""
             ],
             [
-                "kode_penyakit" => "P05",
+                "kode_penyakit" => "P005",
                 "nama_penyakit" => "PMK",
                 "pengobatan" => "",
-                "definisi" => "Penyakit mulut dan kuku merupakan penyakit hewan yg sangat serius dan sangat menular, penyakit ini disebabkan oleh virus"
+                "definisi" => ""
             ],
             [
-                "kode_penyakit" => "P06",
+                "kode_penyakit" => "P006",
                 "nama_penyakit" => "SE",
                 "pengobatan" => "",
-                "definisi" => "Penyakit Septicaemia Epizootica/ngorok adalah suatu penyakit infeksi akut atau menahun pada sapi dan kerbau."
+                "definisi" => ""
             ]
         ];
+
 
 
         foreach ($data as $item) {

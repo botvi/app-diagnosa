@@ -68,7 +68,9 @@
                                     <select class="form-control w-full" id="kode_gejala" name="kode_gejala">
                                         <option value="">-- Pilih Gejala --</option>
                                         @foreach ($gejala as $gejala)
-                                            <option value="{{ $gejala->kode_gejala }}">{{ $gejala->nama_gejala }}</option>
+                                            <option value="{{ $gejala->kode_gejala }}">{{ $gejala->nama_gejala }}
+                                                ({{ $gejala->kode_gejala }})
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -80,6 +82,7 @@
                                         <option value="">-- Pilih Penyakit --</option>
                                         @foreach ($penyakit as $penyakit)
                                             <option value="{{ $penyakit->kode_penyakit }}">{{ $penyakit->nama_penyakit }}
+                                                ({{ $penyakit->kode_penyakit }})
                                             </option>
                                         @endforeach
                                     </select>

@@ -12,14 +12,12 @@ class Aturan extends Model
     protected $fillable = ['kode_penyakit', 'kode_gejala'];
 
 
-    public function penyakit(){
-        return $this->belongsTo(penyakit::class,'kode_penyakit');
-    
+    public function penyakit()
+    {
+        return $this->belongsTo(penyakit::class, 'kode_penyakit');
     }
-    public function gejala(){
+    public function gejala()
+    {
         return $this->belongsTo(gejala::class);
-    
     }
-    
 }
-
